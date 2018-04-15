@@ -32,6 +32,8 @@ int main(int argc, const char * argv[]) {
                 NSLog(@"ERROR: Must enter a numerical value greater than 0.");
         }
         
+        NSLog(@"Type \"roll\" or \"r\" to roll the die:");
+        
         while (gameOver == NO) {
             
             
