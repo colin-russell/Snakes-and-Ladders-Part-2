@@ -1,36 +1,50 @@
 //
 //  main.m
-//  Snakes and Ladders
+//  Snakes and Ladders Part 2
 //
 //  Created by Colin on 2018-04-15.
 //  Copyright © 2018 Colin Russell. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "Player.h"
+#import "PlayerManager.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         BOOL gameOver = NO;
-        Player *player = [Player new];
+        BOOL choosePlayers = YES;
+        char str[100];
+        PlayerManager *playerManager = [PlayerManager new];
         
-        NSLog(@"WELCOME TO SNAKES AND LADDERS! \nType \"roll\" or \"r\" to roll the die:");
-        
+        //NSLog(@"WELCOME TO SNAKES AND LADDERS! \nType \"roll\" or \"r\" to roll the die:");
+        while (choosePlayers == YES) {
+            NSLog(@"WELCOME TO SNAKES AND LADDERS! \nPlease choose the number of players:");
+            fgets (str, 100, stdin);
+            NSString *numPlayersString = [[NSString alloc] initWithUTF8String:str];
+            numPlayersString = [numPlayersString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            
+            if ([numPlayersString intValue] > 0){
+                [playerManager createPlayers:[numPlayersString intValue]];
+                choosePlayers = NO;
+            }
+            else
+                NSLog(@"ERROR: Please choose a number greater than 0.");
+        }
         
         while (gameOver == NO) {
             
-            char str[100];
+            
             fgets (str, 100, stdin);
             NSString *inputString = [[NSString alloc] initWithUTF8String:str];
             inputString = [inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
             if ([inputString containsString:@"roll"] | [inputString containsString:@"r"]) {
-                [player roll];
+                //[player roll];
             }
             
-            if (player.currentSquare == 100)
-                gameOver = YES;
+            //            if (player.currentSquare == 100)
+            //                gameOver = YES;
             
         }
         
