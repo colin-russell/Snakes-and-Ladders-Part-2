@@ -28,8 +28,8 @@ int main(int argc, const char * argv[]) {
                 [playerManager createPlayers:[numPlayersString intValue]];
                 choosePlayers = NO;
             }
-            else
-                NSLog(@"ERROR: Please choose a number greater than 0.");
+            else if (![numPlayersString intValue])
+                NSLog(@"ERROR: Must enter a numerical value greater than 0.");
         }
         
         while (gameOver == NO) {
@@ -40,11 +40,10 @@ int main(int argc, const char * argv[]) {
             inputString = [inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
             if ([inputString containsString:@"roll"] | [inputString containsString:@"r"]) {
-                //[player roll];
+                [playerManager roll];
             }
-            
-            //            if (player.currentSquare == 100)
-            //                gameOver = YES;
+            if ([playerManager currentPlayer].currentSquare == 100)
+                gameOver = YES;
             
         }
         

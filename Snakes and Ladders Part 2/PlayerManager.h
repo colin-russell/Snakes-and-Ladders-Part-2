@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Player.h"
 
 @interface PlayerManager : NSObject
 
 @property NSMutableArray *players;
+@property NSInteger currentIndex;
 
 - (void)createPlayers : (int)numOfPlayers;
+- (void)roll;
+- (void)output;
+- (Player *)currentPlayer;
 
 @end
