@@ -11,8 +11,8 @@
 
 @interface PlayerManager : NSObject
 
-@property NSMutableArray *players;
-@property NSInteger currentIndex;
+@property (nonatomic, strong)NSMutableArray *players;
+@property (nonatomic)NSInteger currentIndex;
 
 - (void)createPlayers : (int)numOfPlayers;
 - (void)roll;
